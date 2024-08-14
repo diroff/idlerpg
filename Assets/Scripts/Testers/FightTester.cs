@@ -8,6 +8,9 @@ public class FightTester : MonoBehaviour
 
     private bool _fightIsActive;
 
+    private Coroutine _playerPrepareCoroutine;
+    private Coroutine _enemyPrepareCoroutine;
+
     private void OnEnable()
     {
         _player.Died += OnFighterDied;
@@ -28,50 +31,54 @@ public class FightTester : MonoBehaviour
 
     private IEnumerator Fight()
     {
+        Debug.Log("Fight is started");
+
         _fightIsActive = true;
 
-        StartCoroutine(PlayerAttack());
-        StartCoroutine(EnemyAttack());
+        _playerPrepareCoroutine = StartCoroutine(PrepareCoroutine(_player, _enemy, _playerPrepareCoroutine));
+        _enemyPrepareCoroutine = StartCoroutine(PrepareCoroutine(_enemy, _player, _enemyPrepareCoroutine));
 
         while (_fightIsActive)
-        {
             yield return null;
-        }
+
+        DisableCoroutine(_playerPrepareCoroutine);
+        DisableCoroutine(_enemyPrepareCoroutine);
+
+        Debug.Log("Fight has ended.");
     }
 
-    private IEnumerator PlayerAttack()
+    private IEnumerator PrepareCoroutine(Fighter fighter, Fighter target, Coroutine coroutine)
     {
-        while (_fightIsActive)
-        {
-            _enemy.ApplyDamage(_player.CalculateTotalDamage());
+        if (!_fightIsActive)
+            yield break;
 
-            if (!_fightIsActive)
-                yield break;
+        yield return new WaitForSeconds(fighter.CalculateTotalPrepareDelay());
 
-            yield return new WaitForSeconds(_player.CalculateAttackDelay());
-        }
+        coroutine = StartCoroutine(AttackCoroutine(fighter, target, coroutine));
     }
 
-    private IEnumerator EnemyAttack()
+    private IEnumerator AttackCoroutine(Fighter fighter, Fighter target, Coroutine coroutine)
     {
-        while (_fightIsActive)
-        {
-            _player.ApplyDamage(_enemy.CalculateTotalDamage());
+        if (!_fightIsActive)
+            yield break;
 
-            if (!_fightIsActive)
-                yield break;
+        yield return new WaitForSeconds(fighter.CalculateAttackDelay());
 
-            yield return new WaitForSeconds(_enemy.CalculateAttackDelay());
-        }
+        target.ApplyDamage(fighter.CalculateTotalDamage());
+        coroutine = StartCoroutine(PrepareCoroutine(fighter, target, coroutine));
     }
 
     private void OnFighterDied()
     {
         _fightIsActive = false;
-        Debug.Log("Fight has ended.");
+    }
 
-        StopCoroutine(PlayerAttack());
-        StopCoroutine(EnemyAttack());
-        StopCoroutine(Fight());
+    private void DisableCoroutine(Coroutine coroutine)
+    {
+        if (coroutine == null)
+            return;
+
+        StopCoroutine(coroutine);
+        coroutine = null;
     }
 }
