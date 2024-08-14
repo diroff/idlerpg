@@ -13,4 +13,9 @@ public abstract class Weapon : MonoBehaviour
     {
         return Stats.BaseAttackDelay;
     }
+
+    public virtual float CalculateTotalEquipTime()
+    {
+        return Stats.EquipDelay;
+    }
 }

@@ -11,4 +11,5 @@ public class WeaponStats : ScriptableObject
 
     [field: SerializeField, Min(0)] public int BaseAttackPower { get; private set; }
     [field: SerializeField, Min(0)] public float BaseAttackDelay { get; private set; }
+    [field: SerializeField, Min(0)] public float EquipDelay { get; private set; }
 }

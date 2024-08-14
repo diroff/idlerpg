@@ -8,12 +8,12 @@ public class Player : Fighter
     [ContextMenu("Take melee weapon")]
     public void TakeMeleeWeapon()
     {
-        SetWeapon(StartMeleeWeapon);
+        TryToSetWeapon(StartMeleeWeapon);
     }
 
     [ContextMenu("Take ranged weapon")]
     public void TakeRangedWeapon()
     {
-        SetWeapon(StartRangedWeapon);
+        TryToSetWeapon(StartRangedWeapon);
     }
 }

@@ -10,10 +10,14 @@ public abstract class Fighter : MonoBehaviour, IDamageable
     protected int CurrentHealth;
 
     public UnityAction<int, int> HealthChanged;
+    public UnityAction<Fighter, Weapon> WeaponTryingToChanged;
     public UnityAction<Weapon> WeaponWasChanged;
     public UnityAction Died;
 
-    private void Start()
+    public Weapon TryingWeapon { get; private set; }
+    public bool IsWeaponChanging { get; protected set; }
+
+    protected virtual void Start()
     {
         Initialize();
     }
@@ -38,7 +42,7 @@ public abstract class Fighter : MonoBehaviour, IDamageable
         if (IsDead())
             Die();
 
-        Debug.Log($"{Stats.Name} take {damage} damage, current health: {CurrentHealth}");
+        Debug.Log($"{Time.time}: {Stats.Name} take {damage} damage, current health: {CurrentHealth}");
     }
 
     public void ApplyHeal(int value)
@@ -64,10 +68,25 @@ public abstract class Fighter : MonoBehaviour, IDamageable
         ApplyHeal(Stats.MaxHealth);
     }
 
-    public void SetWeapon(Weapon weapon)
+    public void SetWeapon()
     {
-        StartWeapon = weapon;
+        StartWeapon = TryingWeapon;
         WeaponWasChanged?.Invoke(StartWeapon);
+        IsWeaponChanging = false;
+        Debug.Log($"{Time.time}: weapon started changed");
+    }
+
+    public void TryToSetWeapon(Weapon weapon)
+    {
+        WeaponTryingToChanged?.Invoke(this, weapon);
+        IsWeaponChanging = true;
+        TryingWeapon = weapon;
+    }
+
+    public void ResetWeaponSetting()
+    {
+        IsWeaponChanging = false;
+        Debug.Log($"{Time.time}: weapon complitly changed");
     }
 
     public virtual int CalculateTotalDamage()
