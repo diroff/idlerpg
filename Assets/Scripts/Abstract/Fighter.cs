@@ -40,6 +40,11 @@ public abstract class Fighter : MonoBehaviour, IDamageable
         return Stats.BaseAttackPower;
     }
 
+    public virtual float CalculateAttackDelay()
+    {
+        return Stats.BaseAttackDelay;
+    }
+
     protected virtual int ReduceDamageByArmor(int damage)
     {
         int totalDamage = damage -= Stats.Armor;

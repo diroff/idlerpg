@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class FightTester : MonoBehaviour
@@ -5,7 +6,7 @@ public class FightTester : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] private Enemy _enemy;
 
-    private bool _isFight = true;
+    private bool _fightIsActive;
 
     private void OnEnable()
     {
@@ -19,15 +20,58 @@ public class FightTester : MonoBehaviour
         _enemy.Died -= OnFighterDied;
     }
 
-    [ContextMenu("Fight")]
-    public void Fight()
+    [ContextMenu("Start Fight")]
+    public void StartFight()
     {
-        _enemy.ApplyDamage(_player.CalculateTotalDamage());
-        _player.ApplyDamage(_enemy.CalculateTotalDamage());
+        StartCoroutine(Fight());
+    }
+
+    private IEnumerator Fight()
+    {
+        _fightIsActive = true;
+
+        StartCoroutine(PlayerAttack());
+        StartCoroutine(EnemyAttack());
+
+        while (_fightIsActive)
+        {
+            yield return null;
+        }
+    }
+
+    private IEnumerator PlayerAttack()
+    {
+        while (_fightIsActive)
+        {
+            _enemy.ApplyDamage(_player.CalculateTotalDamage());
+
+            if (!_fightIsActive)
+                yield break;
+
+            yield return new WaitForSeconds(_player.CalculateAttackDelay());
+        }
+    }
+
+    private IEnumerator EnemyAttack()
+    {
+        while (_fightIsActive)
+        {
+            _player.ApplyDamage(_enemy.CalculateTotalDamage());
+
+            if (!_fightIsActive)
+                yield break;
+
+            yield return new WaitForSeconds(_enemy.CalculateAttackDelay());
+        }
     }
 
     private void OnFighterDied()
     {
-        _isFight = false;
+        _fightIsActive = false;
+        Debug.Log("Fight has ended.");
+
+        StopCoroutine(PlayerAttack());
+        StopCoroutine(EnemyAttack());
+        StopCoroutine(Fight());
     }
 }
