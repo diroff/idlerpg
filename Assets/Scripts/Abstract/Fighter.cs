@@ -7,7 +7,7 @@ public abstract class Fighter : MonoBehaviour, IDamageable
 
     protected int CurrentHealth;
 
-    public UnityAction<int> HealthChanged;
+    public UnityAction<int, int> HealthChanged;
     public UnityAction Died;
 
     private void Start()
@@ -27,7 +27,7 @@ public abstract class Fighter : MonoBehaviour, IDamageable
         if(CurrentHealth < 0)
             CurrentHealth = 0;
 
-        HealthChanged?.Invoke(CurrentHealth);
+        HealthChanged?.Invoke(CurrentHealth, Stats.MaxHealth);
 
         if (IsDead())
             Die();
@@ -58,7 +58,7 @@ public abstract class Fighter : MonoBehaviour, IDamageable
     protected virtual void Initialize()
     {
         CurrentHealth = Stats.MaxHealth;
-        HealthChanged?.Invoke(CurrentHealth);
+        HealthChanged?.Invoke(CurrentHealth, Stats.MaxHealth);
     }
 
     protected virtual bool IsDead()
@@ -70,6 +70,5 @@ public abstract class Fighter : MonoBehaviour, IDamageable
     {
         Debug.Log($"{Stats.Name} is die");
         Died?.Invoke();
-        Destroy(this);
     }
 }
