@@ -17,4 +17,4 @@ MonoBehaviour:
   <Sprite>k__BackingField: {fileID: 0}
   <Icon>k__BackingField: {fileID: 0}
   <BaseAttackPower>k__BackingField: 1
-  <BaseAttackDelay>k__BackingField: 0.5
+  <BaseAttackDelay>k__BackingField: 1

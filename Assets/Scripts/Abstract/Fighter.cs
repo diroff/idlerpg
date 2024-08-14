@@ -4,11 +4,13 @@ using UnityEngine.Events;
 public abstract class Fighter : MonoBehaviour, IDamageable
 {
     [SerializeField] protected CharacterStats Stats;
-    [SerializeField] protected Weapon CurrentWeapon;
+
+    [SerializeField] protected Weapon StartWeapon;
 
     protected int CurrentHealth;
 
     public UnityAction<int, int> HealthChanged;
+    public UnityAction<Weapon> WeaponWasChanged;
     public UnityAction Died;
 
     private void Start()
@@ -62,9 +64,15 @@ public abstract class Fighter : MonoBehaviour, IDamageable
         ApplyHeal(Stats.MaxHealth);
     }
 
+    public void SetWeapon(Weapon weapon)
+    {
+        StartWeapon = weapon;
+        WeaponWasChanged?.Invoke(StartWeapon);
+    }
+
     public virtual int CalculateTotalDamage()
     {
-        int weaponDamage = CurrentWeapon != null ? CurrentWeapon.CalculateTotalDamage() : 0;
+        int weaponDamage = StartWeapon != null ? StartWeapon.CalculateTotalDamage() : 0;
         return Stats.BaseAttackPower + weaponDamage;
     }
 
@@ -75,7 +83,7 @@ public abstract class Fighter : MonoBehaviour, IDamageable
 
     public virtual float CalculateAttackDelay()
     {
-        return CurrentWeapon != null ? CurrentWeapon.CalculateTotalAttackDelay() : 0;
+        return StartWeapon != null ? StartWeapon.CalculateTotalAttackDelay() : 0;
     }
 
     protected virtual int ReduceDamageByArmor(int damage)
