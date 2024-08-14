@@ -17,6 +17,8 @@ public abstract class Fighter : MonoBehaviour, IDamageable
 
     public void ApplyDamage(int damage)
     {
+        damage = ReduceDamageByArmor(damage);
+
         if (damage < 0)
             Debug.LogError("Damage < 0");
 
@@ -36,6 +38,16 @@ public abstract class Fighter : MonoBehaviour, IDamageable
     public virtual int CalculateTotalDamage()
     {
         return Stats.BaseAttackPower;
+    }
+
+    protected virtual int ReduceDamageByArmor(int damage)
+    {
+        int totalDamage = damage -= Stats.Armor;
+
+        if(totalDamage < 0)
+            totalDamage = 0;
+
+        return totalDamage;
     }
 
     protected virtual void Initialize()
