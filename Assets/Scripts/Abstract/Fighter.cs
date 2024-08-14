@@ -3,12 +3,17 @@ using UnityEngine.Events;
 
 public abstract class Fighter : MonoBehaviour, IDamageable
 {
-    [SerializeField] protected CharacterStats CharacterStats;
+    [SerializeField] protected CharacterStats Stats;
 
     protected int CurrentHealth;
 
     public UnityAction<int> HealthChanged;
     public UnityAction Died;
+
+    private void Start()
+    {
+        Initialize();
+    }
 
     public void ApplyDamage(int damage)
     {
@@ -24,6 +29,19 @@ public abstract class Fighter : MonoBehaviour, IDamageable
 
         if (IsDead())
             Die();
+
+        Debug.Log($"{Stats.Name} take {damage} damage, current health: {CurrentHealth}");
+    }
+
+    public virtual int CalculateTotalDamage()
+    {
+        return Stats.BaseAttackPower;
+    }
+
+    protected virtual void Initialize()
+    {
+        CurrentHealth = Stats.MaxHealth;
+        HealthChanged?.Invoke(CurrentHealth);
     }
 
     protected virtual bool IsDead()
@@ -33,6 +51,8 @@ public abstract class Fighter : MonoBehaviour, IDamageable
 
     protected virtual void Die()
     {
+        Debug.Log($"{Stats.Name} is die");
         Died?.Invoke();
+        Destroy(this);
     }
 }
