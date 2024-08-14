@@ -19,7 +19,18 @@ public abstract class Fighter : MonoBehaviour, IDamageable
 
     protected virtual void Start()
     {
-        Initialize();
+        if (Stats == null)
+            return;
+
+        Initialize(Stats);
+    }
+
+    public virtual void Initialize(CharacterStats stats)
+    {
+        Stats = stats;
+
+        CurrentHealth = Stats.MaxHealth;
+        HealthChanged?.Invoke(CurrentHealth, Stats.MaxHealth);
     }
 
     public void ApplyDamage(int damage)
@@ -113,12 +124,6 @@ public abstract class Fighter : MonoBehaviour, IDamageable
             totalDamage = 0;
 
         return totalDamage;
-    }
-
-    protected virtual void Initialize()
-    {
-        CurrentHealth = Stats.MaxHealth;
-        HealthChanged?.Invoke(CurrentHealth, Stats.MaxHealth);
     }
 
     protected virtual bool IsDead()

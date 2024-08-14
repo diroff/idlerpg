@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a40a8888bafca814b8de0a90594ed9ec, type: 3}
-  m_Name: BigStick
+  m_Script: {fileID: 11500000, guid: db9055e6f4e98584f82be261362ea3bb, type: 3}
+  m_Name: OneHundredPercent
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Big Stick
-  <Description>k__BackingField: Big black Stick
-  <Sprite>k__BackingField: {fileID: 0}
-  <Icon>k__BackingField: {fileID: 0}
-  <BaseAttackPower>k__BackingField: 3
+  <Name>k__BackingField: One Hundred Percent
+  <MaxHealth>k__BackingField: 100
+  <Armor>k__BackingField: 0
+  <BaseAttackPower>k__BackingField: 0
   <BaseAttackDelay>k__BackingField: 2
-  <EquipDelay>k__BackingField: 2
+  <SpawnChance>k__BackingField: 1

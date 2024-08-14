@@ -18,3 +18,4 @@ MonoBehaviour:
   <Icon>k__BackingField: {fileID: 0}
   <BaseAttackPower>k__BackingField: 30
   <BaseAttackDelay>k__BackingField: 15
+  <EquipDelay>k__BackingField: 5
