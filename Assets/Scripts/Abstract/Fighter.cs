@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public abstract class Fighter : MonoBehaviour, IDamageable
 {
     [SerializeField] protected CharacterStats Stats;
+    [SerializeField] protected Weapon CurrentWeapon;
 
     protected int CurrentHealth;
 
@@ -37,12 +38,18 @@ public abstract class Fighter : MonoBehaviour, IDamageable
 
     public virtual int CalculateTotalDamage()
     {
-        return Stats.BaseAttackPower;
+        int weaponDamage = CurrentWeapon != null ? CurrentWeapon.CalculateTotalDamage() : 0;
+        return Stats.BaseAttackPower + weaponDamage;
+    }
+
+    public virtual float CalculateTotalPrepareDelay()
+    {
+        return Stats.BaseAttackDelay;
     }
 
     public virtual float CalculateAttackDelay()
     {
-        return Stats.BaseAttackDelay;
+        return CurrentWeapon != null ? CurrentWeapon.CalculateTotalAttackDelay() : 0;
     }
 
     protected virtual int ReduceDamageByArmor(int damage)

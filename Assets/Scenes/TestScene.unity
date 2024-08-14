@@ -262,6 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 649618034}
   - component: {fileID: 649618033}
+  - component: {fileID: 649618035}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -282,6 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stats: {fileID: 11400000, guid: c5f1083cad18dbf449d8e89e4374c62d, type: 2}
+  CurrentWeapon: {fileID: 649618035}
 --- !u!4 &649618034
 Transform:
   m_ObjectHideFlags: 0
@@ -297,6 +299,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &649618035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649618032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e93ddb483faf7e14681bfdbf4f3f86b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stats: {fileID: 11400000, guid: 50d5272078ee5fa4b8b46ede10169886, type: 2}
 --- !u!1 &1069352831
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,6 +322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1069352833}
   - component: {fileID: 1069352832}
+  - component: {fileID: 1069352834}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -327,6 +343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stats: {fileID: 11400000, guid: a109ddd345df1f941aef079c00ac01d3, type: 2}
+  CurrentWeapon: {fileID: 1069352834}
 --- !u!4 &1069352833
 Transform:
   m_ObjectHideFlags: 0
@@ -342,3 +359,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1069352834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069352831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e93ddb483faf7e14681bfdbf4f3f86b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stats: {fileID: 11400000, guid: c8124edf28432784783ba1e3ff92c099, type: 2}
