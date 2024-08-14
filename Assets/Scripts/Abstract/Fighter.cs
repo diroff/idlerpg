@@ -21,7 +21,10 @@ public abstract class Fighter : MonoBehaviour, IDamageable
         damage = ReduceDamageByArmor(damage);
 
         if (damage < 0)
+        {
             Debug.LogError("Damage < 0");
+            return;
+        }
 
         CurrentHealth -= damage;
 
@@ -34,6 +37,29 @@ public abstract class Fighter : MonoBehaviour, IDamageable
             Die();
 
         Debug.Log($"{Stats.Name} take {damage} damage, current health: {CurrentHealth}");
+    }
+
+    public void ApplyHeal(int value)
+    {
+        if (value < 0)
+        {
+            Debug.LogError("Heal value < 0");
+            return;
+        }
+
+        CurrentHealth += value;
+
+        if(CurrentHealth > Stats.MaxHealth)
+            CurrentHealth = Stats.MaxHealth;
+
+        HealthChanged?.Invoke(CurrentHealth, Stats.MaxHealth);
+        Debug.Log($"{Stats.Name} healed {value} points, current health: {CurrentHealth}");
+    }
+
+    [ContextMenu("Set max health")]
+    public void SetMaxHealth()
+    {
+        ApplyHeal(Stats.MaxHealth);
     }
 
     public virtual int CalculateTotalDamage()
