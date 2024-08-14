@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f30e29d6355cb84f93436b8d52b6969, type: 3}
+  m_Name: Slingshot
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Slingshot
+  <Description>k__BackingField: Just a slingshot with endless stones
+  <Sprite>k__BackingField: {fileID: 0}
+  <Icon>k__BackingField: {fileID: 0}
+  <BaseAttackPower>k__BackingField: 2
+  <BaseAttackDelay>k__BackingField: 1.5

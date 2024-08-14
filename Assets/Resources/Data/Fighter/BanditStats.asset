@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9055e6f4e98584f82be261362ea3bb, type: 3}
   m_Name: BanditStats
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: PAVUK
-  <MaxHealth>k__BackingField: 5
-  <Armor>k__BackingField: 1
-  <BaseAttackPower>k__BackingField: 2
-  <BaseAttackDelay>k__BackingField: 2
-  <SpawnChance>k__BackingField: 0.5
+  <Name>k__BackingField: Bandit
+  <MaxHealth>k__BackingField: 6
+  <Armor>k__BackingField: 0
+  <BaseAttackPower>k__BackingField: 4
+  <BaseAttackDelay>k__BackingField: 4
+  <SpawnChance>k__BackingField: 0.3

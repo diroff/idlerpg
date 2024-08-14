@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdd3ebc0007bb424fa6ab69e5cc19ff5, type: 3}
-  m_Name: SmallKnife
+  m_Script: {fileID: 11500000, guid: 5f30e29d6355cb84f93436b8d52b6969, type: 3}
+  m_Name: ToyBow
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: 
-  <Description>k__BackingField: 
+  <Name>k__BackingField: Toy bow
+  <Description>k__BackingField: A toy bow
   <Sprite>k__BackingField: {fileID: 0}
   <Icon>k__BackingField: {fileID: 0}
-  <BaseAttackPower>k__BackingField: 0
-  <BaseAttackDelay>k__BackingField: 0
+  <BaseAttackPower>k__BackingField: 3
+  <BaseAttackDelay>k__BackingField: 2
