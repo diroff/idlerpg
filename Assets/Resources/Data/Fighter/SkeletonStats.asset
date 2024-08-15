@@ -18,4 +18,5 @@ MonoBehaviour:
   <Armor>k__BackingField: 0
   <BaseAttackPower>k__BackingField: 4
   <BaseAttackDelay>k__BackingField: 4
+  <StartWeapon>k__BackingField: {fileID: 11400000, guid: b6f3501af30472241bb5b0b06229f66f, type: 2}
   <SpawnChance>k__BackingField: 0.3

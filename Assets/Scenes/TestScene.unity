@@ -1868,9 +1868,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Stats: {fileID: 11400000, guid: c5f1083cad18dbf449d8e89e4374c62d, type: 2}
   SpriteRenderer: {fileID: 649618038}
-  StartWeapon: {fileID: 649618035}
-  StartMeleeWeapon: {fileID: 649618035}
-  StartRangedWeapon: {fileID: 649618036}
+  WeaponPlug: {fileID: 649618035}
+  StartRangedWeapon: {fileID: 11400000, guid: b6f3501af30472241bb5b0b06229f66f, type: 2}
 --- !u!4 &649618034
 Transform:
   m_ObjectHideFlags: 0
@@ -2882,7 +2881,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Stats: {fileID: 0}
   SpriteRenderer: {fileID: 1069352836}
-  StartWeapon: {fileID: 1069352834}
+  WeaponPlug: {fileID: 1069352834}
 --- !u!4 &1069352833
 Transform:
   m_ObjectHideFlags: 0

@@ -141,7 +141,7 @@ public class FighterBehaviour : MonoBehaviour
 
         SwitchWeaponStateStarted?.Invoke();
 
-        var waitTime = fighter.TryingWeapon.CalculateTotalEquipTime();
+        var waitTime = fighter.TryingWeapon.EquipDelay;
         var maxTime = waitTime;
 
         while(waitTime > 0)

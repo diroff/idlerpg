@@ -2,7 +2,12 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
-    [SerializeField] protected WeaponStats Stats;
+    protected WeaponStats Stats;
+
+    public void Initialize(WeaponStats stats)
+    {
+        Stats = stats;
+    }
 
     public WeaponStats GetStats()
     {

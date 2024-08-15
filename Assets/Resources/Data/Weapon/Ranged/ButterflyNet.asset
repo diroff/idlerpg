@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f30e29d6355cb84f93436b8d52b6969, type: 3}
   m_Name: ButterflyNet
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Slingshot
-  <Description>k__BackingField: Just a slingshot with endless stones
+  <Name>k__BackingField: Butterfly Net
+  <Description>k__BackingField: It should be a slingshot, but it turned out to be
+    a net (you can throw it)
   <Sprite>k__BackingField: {fileID: 21300000, guid: 441da0335b124ec4da029b1867586938, type: 3}
   <Icon>k__BackingField: {fileID: 21300000, guid: 441da0335b124ec4da029b1867586938, type: 3}
   <BaseAttackPower>k__BackingField: 2

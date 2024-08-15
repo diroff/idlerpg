@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class Player : Fighter
 {
-    [SerializeField] protected MeleeWeapon StartMeleeWeapon;
-    [SerializeField] protected RangedWeapon StartRangedWeapon;
+    [Header("Player parameters")]
+    [SerializeField] protected RangedWeaponStats StartRangedWeapon;
 
     [ContextMenu("Take melee weapon")]
     public void TakeMeleeWeapon()
     {
-        TryToSetWeapon(StartMeleeWeapon);
+        TryToSetWeapon(Stats.StartWeapon);
     }
 
     [ContextMenu("Take ranged weapon")]

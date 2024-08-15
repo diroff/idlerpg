@@ -7,11 +7,11 @@ public abstract class Fighter : MonoBehaviour, IDamageable
     [SerializeField] protected SpriteRenderer SpriteRenderer;
 
     [Header("Weapon")]
-    [SerializeField] protected Weapon StartWeapon;
+    [SerializeField] protected Weapon WeaponPlug;
 
     protected int CurrentHealth;
 
-    private Weapon _currentWeapon;
+    private WeaponStats _currentWeapon;
 
     public UnityAction<int, int> HealthChanged;
     public UnityAction<Weapon> WeaponWasChanged;
@@ -20,7 +20,7 @@ public abstract class Fighter : MonoBehaviour, IDamageable
     public UnityAction WeaponTryingToChanged;
     public UnityAction Died;
 
-    public Weapon TryingWeapon { get; private set; }
+    public WeaponStats TryingWeapon { get; private set; }
     public bool IsWeaponChanging { get; private set; }
 
     protected virtual void Start()
@@ -38,7 +38,7 @@ public abstract class Fighter : MonoBehaviour, IDamageable
         SpriteRenderer.sprite = stats.Sprite;
         CurrentHealth = Stats.MaxHealth;
 
-        TryToSetWeapon(StartWeapon);
+        TryToSetWeapon(Stats.StartWeapon);
         SetWeapon();
 
         HealthChanged?.Invoke(CurrentHealth, Stats.MaxHealth);
@@ -91,11 +91,12 @@ public abstract class Fighter : MonoBehaviour, IDamageable
     public void SetWeapon()
     {
         _currentWeapon = TryingWeapon;
+        WeaponPlug.Initialize(_currentWeapon);
         IsWeaponChanging = false;
-        WeaponWasChanged?.Invoke(_currentWeapon);
+        WeaponWasChanged?.Invoke(WeaponPlug);
     }
 
-    public void TryToSetWeapon(Weapon weapon)
+    public void TryToSetWeapon(WeaponStats weapon)
     {
         IsWeaponChanging = true;
         TryingWeapon = weapon;
@@ -104,7 +105,7 @@ public abstract class Fighter : MonoBehaviour, IDamageable
 
     public virtual int CalculateTotalDamage()
     {
-        int weaponDamage = _currentWeapon != null ? _currentWeapon.CalculateTotalDamage() : 0;
+        int weaponDamage = _currentWeapon != null ? WeaponPlug.CalculateTotalDamage() : 0;
         return Stats.BaseAttackPower + weaponDamage;
     }
 
@@ -115,7 +116,7 @@ public abstract class Fighter : MonoBehaviour, IDamageable
 
     public virtual float CalculateAttackDelay()
     {
-        return _currentWeapon != null ? _currentWeapon.CalculateTotalAttackDelay() : 0;
+        return _currentWeapon != null ? WeaponPlug.CalculateTotalAttackDelay() : 0;
     }
 
     protected virtual int ReduceDamageByArmor(int damage)
