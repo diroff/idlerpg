@@ -12,7 +12,7 @@ public abstract class Fighter : MonoBehaviour, IDamageable
     protected int CurrentHealth;
 
     public UnityAction<int, int> HealthChanged;
-    public UnityAction<Fighter, Weapon> WeaponTryingToChanged;
+    public UnityAction WeaponTryingToChanged;
     public UnityAction<Weapon> WeaponWasChanged;
     public UnityAction Died;
 
@@ -92,7 +92,7 @@ public abstract class Fighter : MonoBehaviour, IDamageable
 
     public void TryToSetWeapon(Weapon weapon)
     {
-        WeaponTryingToChanged?.Invoke(this, weapon);
+        WeaponTryingToChanged?.Invoke();
         IsWeaponChanging = true;
         TryingWeapon = weapon;
     }

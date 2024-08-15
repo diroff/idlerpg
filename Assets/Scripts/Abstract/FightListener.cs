@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public abstract class ButtonUIInstaller : MonoBehaviour
+public abstract class FightListener : MonoBehaviour
 {
     [SerializeField] private Fight _fight;
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         _fight.FightStarted += OnFightStarted;
         _fight.FightEnded += OnFightFinished;
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         _fight.FightStarted -= OnFightStarted;
         _fight.FightEnded -= OnFightFinished;
@@ -18,18 +18,18 @@ public abstract class ButtonUIInstaller : MonoBehaviour
 
     private void Start()
     {
-        SetupButtonsState(_fight.FightEnabled);
+        OnFightStateChangedAction(_fight.FightEnabled);
     }
 
     private void OnFightStarted()
     {
-        SetupButtonsState(true);
+        OnFightStateChangedAction(true);
     }
 
     private void OnFightFinished()
     {
-        SetupButtonsState(false);
+        OnFightStateChangedAction(false);
     }
 
-    protected abstract void SetupButtonsState(bool enabled);
+    protected abstract void OnFightStateChangedAction(bool enabled);
 }

@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FightButtonUIInstaller : ButtonUIInstaller
+public class FightButtonUIInstaller : FightListener
 {
     [SerializeField] private Button _startFightButton;
     [SerializeField] private Button _leaveButton;
 
-    protected override void SetupButtonsState(bool enabled)
+    protected override void OnFightStateChangedAction(bool enabled)
     {
         _leaveButton.gameObject.SetActive(enabled);
         _startFightButton.gameObject.SetActive(!enabled);
