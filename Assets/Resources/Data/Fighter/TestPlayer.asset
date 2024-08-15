@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TestPlayer
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Knight
-  <MaxHealth>k__BackingField: 100
+  <MaxHealth>k__BackingField: 10
   <Armor>k__BackingField: 0
   <BaseAttackPower>k__BackingField: 2
   <BaseAttackDelay>k__BackingField: 1

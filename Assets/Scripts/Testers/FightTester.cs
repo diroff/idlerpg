@@ -4,27 +4,24 @@ using UnityEngine;
 public class FightTester : MonoBehaviour
 {
     [SerializeField] private Player _player;
-    [SerializeField] private Enemy _enemy;
+    [SerializeField] private Enemy _enemyPlug;
 
     private bool _fightIsActive;
 
-    private Coroutine _playerPrepareCoroutine;
-    private Coroutine _enemyPrepareCoroutine;
-
-    private void OnEnable()
+    public void Initialize(EnemyStats enemyStats)
     {
         _player.Died += OnFighterDied;
-        _player.WeaponTryingToChanged += OnWeaponChanged;
-        _enemy.Died += OnFighterDied;
-        _enemy.WeaponTryingToChanged += OnWeaponChanged;
+        _enemyPlug.Initialize(enemyStats);
+        _enemyPlug.Died += OnFighterDied;
     }
 
-    private void OnDisable()
+    private void StopFight()
     {
+        _fightIsActive = false;
         _player.Died -= OnFighterDied;
-        _player.WeaponTryingToChanged -= OnWeaponChanged;
-        _enemy.Died -= OnFighterDied;
-        _enemy.WeaponTryingToChanged -= OnWeaponChanged;
+        _enemyPlug.Died -= OnFighterDied;
+
+        Debug.Log("Fight has ended.");
     }
 
     [ContextMenu("Start Fight")]
@@ -39,16 +36,11 @@ public class FightTester : MonoBehaviour
 
         _fightIsActive = true;
 
-        _playerPrepareCoroutine = StartCoroutine(PrepareCoroutine(_player, _enemy));
-        _enemyPrepareCoroutine = StartCoroutine(PrepareCoroutine(_enemy, _player));
+        StartCoroutine(PrepareCoroutine(_player, _enemyPlug));
+        StartCoroutine(PrepareCoroutine(_enemyPlug, _player));
 
         while (_fightIsActive)
             yield return null;
-
-        StopCoroutine(_playerPrepareCoroutine);
-        StopCoroutine(_enemyPrepareCoroutine);
-
-        Debug.Log("Fight has ended.");
     }
 
     private IEnumerator PrepareCoroutine(Fighter fighter, Fighter target)
@@ -86,9 +78,13 @@ public class FightTester : MonoBehaviour
 
         while (waitTime > 0)
         {
+            if (!_fightIsActive)
+                yield break;
+
             waitTime -= Time.deltaTime;
             yield return null;
         }
+
 
         target.ApplyDamage(fighter.CalculateTotalDamage());
 
@@ -103,11 +99,6 @@ public class FightTester : MonoBehaviour
 
     private void OnFighterDied()
     {
-        _fightIsActive = false;
-    }
-
-    private void OnWeaponChanged(Fighter fighter, Weapon weapon)
-    {
-
+        StopFight();
     }
 }
