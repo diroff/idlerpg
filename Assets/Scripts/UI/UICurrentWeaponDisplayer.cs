@@ -10,12 +10,22 @@ public class UICurrentWeaponDisplayer : MonoBehaviour
 
     private void OnEnable()
     {
-        _fighter.WeaponWasChanged += OnWeaponChanged;
+        if (_fighter == null)
+            return;
+
+        Initialize();
     }
 
     private void OnDisable()
     {
         _fighter.WeaponWasChanged -= OnWeaponChanged;
+    }
+
+    public void Initialize()
+    {
+        _weaponIcon.gameObject.SetActive(true);
+
+        _fighter.WeaponWasChanged += OnWeaponChanged;
     }
 
     private void OnWeaponChanged(Weapon weapon)

@@ -7,6 +7,7 @@ public class EnemyStatsUIInitializer : MonoBehaviour
 
     [Header("UI Initializers")]
     [SerializeField] private HealthUIInitializer _healthUIInitializer;
+    [SerializeField] private CurrentWeaponUIInitializer _currentWeaponUIInitializer;
 
     private void OnEnable()
     {
@@ -23,6 +24,7 @@ public class EnemyStatsUIInitializer : MonoBehaviour
     private void OnFightStarted()
     {
         _enemyStatsPanel.SetActive(true);
+        _currentWeaponUIInitializer.Initialize();
         _healthUIInitializer.Initialize();
     }
 

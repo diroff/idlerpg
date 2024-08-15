@@ -14,8 +14,10 @@ public abstract class Fighter : MonoBehaviour, IDamageable
     private Weapon _currentWeapon;
 
     public UnityAction<int, int> HealthChanged;
-    public UnityAction WeaponTryingToChanged;
     public UnityAction<Weapon> WeaponWasChanged;
+
+    public UnityAction FighterWasInitialized;
+    public UnityAction WeaponTryingToChanged;
     public UnityAction Died;
 
     public Weapon TryingWeapon { get; private set; }
@@ -37,6 +39,7 @@ public abstract class Fighter : MonoBehaviour, IDamageable
         CurrentHealth = Stats.MaxHealth;
 
         TryToSetWeapon(StartWeapon);
+        SetWeapon();
 
         HealthChanged?.Invoke(CurrentHealth, Stats.MaxHealth);
     }
