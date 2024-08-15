@@ -1,45 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FightButtonUIInstaller : MonoBehaviour
+public class FightButtonUIInstaller : ButtonUIInstaller
 {
-    [SerializeField] private Fight _fight;
-
     [SerializeField] private Button _startFightButton;
-    [SerializeField] private Button _leaveFightButton;
+    [SerializeField] private Button _leaveButton;
 
-    private void OnEnable()
+    protected override void SetupButtonsState(bool enabled)
     {
-        _fight.FightStarted += OnFightStarted;
-        _fight.FightEnded += OnFightFinished;
-    }
-
-    private void OnDisable()
-    {
-        _fight.FightStarted -= OnFightStarted;
-        _fight.FightEnded -= OnFightFinished;
-    }
-
-    private void Start()
-    {
-        SetupButtonsState(_fight.FightEnabled);
-    }
-
-    private void OnFightStarted()
-    {
-        SetupButtonsState(true);
-    }
-
-    private void OnFightFinished()
-    {
-        SetupButtonsState(false);
-    }
-
-    private void SetupButtonsState(bool enabled)
-    {
-        bool isFight = enabled;
-
-        _startFightButton.gameObject.SetActive(!isFight);
-        _leaveFightButton.gameObject.SetActive(isFight);
+        _leaveButton.gameObject.SetActive(enabled);
+        _startFightButton.gameObject.SetActive(!enabled);
     }
 }

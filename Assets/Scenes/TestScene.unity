@@ -525,7 +525,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fight: {fileID: 221861536}
   _startFightButton: {fileID: 142423742}
-  _leaveFightButton: {fileID: 753452884}
+  _leaveButton: {fileID: 753452884}
 --- !u!114 &221861541
 MonoBehaviour:
   m_ObjectHideFlags: 0
