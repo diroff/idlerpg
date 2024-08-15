@@ -8,7 +8,7 @@ public class FighterBehaviour : MonoBehaviour
     private Coroutine _prepareCoroutine;
     private Coroutine _attackCoroutine;
 
-    private FightTester _fight;
+    private Fight _fight;
 
     private Fighter _target;
 
@@ -23,7 +23,7 @@ public class FighterBehaviour : MonoBehaviour
         _fight.FightEnded -= OnFightEnded;
     }
 
-    public void PrepareToFight(FightTester fight)
+    public void PrepareToFight(Fight fight)
     {
         _fight = fight;
 

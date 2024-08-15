@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class FightTester : MonoBehaviour
+public class Fight : MonoBehaviour
 {
     [SerializeField] private Player _player;
     [SerializeField] private Enemy _enemyPlug;
@@ -12,6 +12,8 @@ public class FightTester : MonoBehaviour
     public void Initialize(EnemyStats enemyStats)
     {
         _player.Died += OnFighterDied;
+
+        _enemyPlug.gameObject.SetActive(true);
         _enemyPlug.Initialize(enemyStats);
         _enemyPlug.Died += OnFighterDied;
     }
@@ -25,20 +27,14 @@ public class FightTester : MonoBehaviour
         FightEnded?.Invoke();
     }
 
-    [ContextMenu("Start Fight")]
     public void StartFight()
     {
-        Fight();
+        FightStarted?.Invoke();
     }
 
     public Fighter GetTarget(Fighter fighter)
     {
         return fighter == _player ? _enemyPlug : _player;
-    }
-
-    private void Fight()
-    {
-        FightStarted?.Invoke();
     }
 
     private void OnFighterDied()

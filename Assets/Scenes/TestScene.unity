@@ -185,7 +185,6 @@ MonoBehaviour:
   _enemies:
   - {fileID: 11400000, guid: a50a4b0488f43554ea6ad53d2fe8bad0, type: 2}
   - {fileID: 11400000, guid: a109ddd345df1f941aef079c00ac01d3, type: 2}
-  - {fileID: 11400000, guid: b2e9d58a1eb77304590d862267663158, type: 2}
   - {fileID: 11400000, guid: 18c6ea1a32ca672449ac49089e05af18, type: 2}
 --- !u!114 &221861539
 MonoBehaviour:
@@ -451,7 +450,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1069352832
 MonoBehaviour:
   m_ObjectHideFlags: 0

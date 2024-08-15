@@ -4,7 +4,7 @@ using UnityEngine;
 public class FightCreator : MonoBehaviour
 {
     [SerializeField] private EnemySelector _enemySelector;
-    [SerializeField] private FightTester _tester;
+    [SerializeField] private Fight _tester;
 
     [SerializeField] private List<FighterBehaviour> _fighterBehaviours;
 
