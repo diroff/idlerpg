@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class FighterBehaviour : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class FighterBehaviour : MonoBehaviour
     private Fighter _target;
 
     private bool _fightIsActive = false;
+
+    public UnityAction<float, float> PrepareTimeChanged;
+    public UnityAction<float, float> AttackTimeChanged;
 
     private void OnDisable()
     {
@@ -76,6 +80,7 @@ public class FighterBehaviour : MonoBehaviour
         Debug.Log($"{Time.time}: {fighter} prepared to fight");
 
         var waitTime = fighter.CalculateTotalPrepareDelay();
+        var maxTime = waitTime;
 
         while (waitTime > 0)
         {
@@ -86,6 +91,7 @@ public class FighterBehaviour : MonoBehaviour
             }
 
             waitTime -= Time.deltaTime;
+            PrepareTimeChanged?.Invoke(waitTime, maxTime);
             yield return null;
         }
 
@@ -99,10 +105,12 @@ public class FighterBehaviour : MonoBehaviour
         Debug.Log($"{Time.time}: {fighter} prepared to attack");
 
         var waitTime = fighter.CalculateAttackDelay();
+        var maxTime = waitTime;
 
         while (waitTime > 0)
         {
             waitTime -= Time.deltaTime;
+            AttackTimeChanged?.Invoke(waitTime, maxTime);
             yield return null;
         }
 
