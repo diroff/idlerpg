@@ -3,12 +3,43 @@ using UnityEngine.UI;
 
 public class FightButtonUIInstaller : MonoBehaviour
 {
-    [SerializeField] private FightInitializer _fightCreator;
+    [SerializeField] private Fight _fight;
 
-    [SerializeField] private Button _button;
+    [SerializeField] private Button _startFightButton;
+    [SerializeField] private Button _leaveFightButton;
 
-    public void ChangeFightState()
+    private void OnEnable()
     {
-        _fightCreator.ChangeFightState();
+        _fight.FightStarted += OnFightStarted;
+        _fight.FightEnded += OnFightFinished;
+    }
+
+    private void OnDisable()
+    {
+        _fight.FightStarted -= OnFightStarted;
+        _fight.FightEnded -= OnFightFinished;
+    }
+
+    private void Start()
+    {
+        SetupButtonsState(_fight.FightEnabled);
+    }
+
+    private void OnFightStarted()
+    {
+        SetupButtonsState(true);
+    }
+
+    private void OnFightFinished()
+    {
+        SetupButtonsState(false);
+    }
+
+    private void SetupButtonsState(bool enabled)
+    {
+        bool isFight = enabled;
+
+        _startFightButton.gameObject.SetActive(!isFight);
+        _leaveFightButton.gameObject.SetActive(isFight);
     }
 }

@@ -8,7 +8,6 @@ public class FightInitializer : MonoBehaviour
 
     [SerializeField] private List<FighterBehaviour> _fighterBehaviours;
 
-    [ContextMenu("Create Fight")]
     public void CreateFight()
     {
         var enemy = _enemySelector.GetRandomEnemy();
@@ -24,13 +23,5 @@ public class FightInitializer : MonoBehaviour
     public void StopFight()
     {
         _fight.StopFight();
-    }
-
-    public void ChangeFightState()
-    {
-        if (_fight.FightEnabled)
-            StopFight();
-        else
-            CreateFight();
     }
 }

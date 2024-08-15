@@ -50,14 +50,22 @@ public class FighterBehaviour : MonoBehaviour
     {
         _fightIsActive = false;
 
-        StopCoroutine(_prepareCoroutine);
-        StopCoroutine(_attackCoroutine);
+        StopFightCoroutines();
 
         _fight.FightStarted -= OnFightStarted;
         _fight.FightEnded -= OnFightEnded;
 
         if (_isDisableOnEnd)
             _fighter.gameObject.SetActive(false);
+    }
+
+    private void StopFightCoroutines()
+    {
+        if(_prepareCoroutine != null)
+            StopCoroutine(_prepareCoroutine);
+
+        if (_attackCoroutine != null)
+            StopCoroutine(_attackCoroutine);
     }
 
     private IEnumerator PrepareCoroutine(Fighter fighter, Fighter target)
