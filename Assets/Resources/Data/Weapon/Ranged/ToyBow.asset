@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Toy bow
   <Description>k__BackingField: A toy bow
-  <Sprite>k__BackingField: {fileID: 0}
-  <Icon>k__BackingField: {fileID: 0}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: d01519cd515424a4d9faef4ca18bd413, type: 3}
+  <Icon>k__BackingField: {fileID: 21300000, guid: d01519cd515424a4d9faef4ca18bd413, type: 3}
   <BaseAttackPower>k__BackingField: 3
   <BaseAttackDelay>k__BackingField: 2
   <EquipDelay>k__BackingField: 2

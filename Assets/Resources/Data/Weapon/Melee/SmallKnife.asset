@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Small Knife
   <Description>k__BackingField: A little knife
-  <Sprite>k__BackingField: {fileID: 0}
-  <Icon>k__BackingField: {fileID: 0}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: c35a755ae8c5aab40abfe9549e4c7bad, type: 3}
+  <Icon>k__BackingField: {fileID: 21300000, guid: c35a755ae8c5aab40abfe9549e4c7bad, type: 3}
   <BaseAttackPower>k__BackingField: 1
   <BaseAttackDelay>k__BackingField: 1
   <EquipDelay>k__BackingField: 2

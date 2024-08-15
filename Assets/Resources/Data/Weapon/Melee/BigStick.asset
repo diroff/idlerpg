@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Big Stick
   <Description>k__BackingField: Big black Stick
-  <Sprite>k__BackingField: {fileID: 0}
-  <Icon>k__BackingField: {fileID: 0}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: df7a53bb8563184439e09de1d2199a59, type: 3}
+  <Icon>k__BackingField: {fileID: 21300000, guid: df7a53bb8563184439e09de1d2199a59, type: 3}
   <BaseAttackPower>k__BackingField: 3
   <BaseAttackDelay>k__BackingField: 2
   <EquipDelay>k__BackingField: 2
