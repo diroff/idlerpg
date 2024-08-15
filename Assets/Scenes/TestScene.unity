@@ -441,6 +441,7 @@ GameObject:
   - component: {fileID: 221861538}
   - component: {fileID: 221861539}
   - component: {fileID: 221861540}
+  - component: {fileID: 221861541}
   m_Layer: 0
   m_Name: Fight
   m_TagString: Untagged
@@ -525,6 +526,20 @@ MonoBehaviour:
   _fight: {fileID: 221861536}
   _startFightButton: {fileID: 142423742}
   _leaveFightButton: {fileID: 753452884}
+--- !u!114 &221861541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221861535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2951802a2d7e08846965cd30cea69bcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fight: {fileID: 221861536}
+  _healButton: {fileID: 1492655170}
 --- !u!1 &425008204
 GameObject:
   m_ObjectHideFlags: 0
