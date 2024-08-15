@@ -126,7 +126,7 @@ public abstract class Fighter : MonoBehaviour, IDamageable
         return totalDamage;
     }
 
-    protected virtual bool IsDead()
+    public virtual bool IsDead()
     {
         return CurrentHealth <= 0;
     }
