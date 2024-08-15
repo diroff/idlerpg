@@ -24,7 +24,6 @@ public class WeaponSwitchListener : FightListener
             return;
 
         _fighter.SetWeapon();
-        Debug.Log("Weapon is setted! Weapon changing status = " + _fighter.IsWeaponChanging);
     }
 
     protected override void OnFightStateChangedAction(bool isFightActive)

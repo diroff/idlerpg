@@ -4,6 +4,11 @@ public abstract class Weapon : MonoBehaviour
 {
     [SerializeField] protected WeaponStats Stats;
 
+    public WeaponStats GetStats()
+    {
+        return Stats;
+    }
+
     public virtual int CalculateTotalDamage()
     {
         return Stats.BaseAttackPower;

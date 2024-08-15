@@ -35,7 +35,9 @@ public abstract class Fighter : MonoBehaviour, IDamageable
 
         SpriteRenderer.sprite = stats.Sprite;
         CurrentHealth = Stats.MaxHealth;
-        _currentWeapon = StartWeapon;
+
+        TryToSetWeapon(StartWeapon);
+
         HealthChanged?.Invoke(CurrentHealth, Stats.MaxHealth);
     }
 
