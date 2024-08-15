@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public abstract class Fighter : MonoBehaviour, IDamageable
 {
     [SerializeField] protected CharacterStats Stats;
+    [SerializeField] protected SpriteRenderer SpriteRenderer;
 
     [SerializeField] protected Weapon StartWeapon;
 
@@ -29,6 +30,7 @@ public abstract class Fighter : MonoBehaviour, IDamageable
     {
         Stats = stats;
 
+        SpriteRenderer.sprite = stats.Sprite;
         CurrentHealth = Stats.MaxHealth;
         HealthChanged?.Invoke(CurrentHealth, Stats.MaxHealth);
     }

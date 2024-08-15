@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: TestPlayer
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Knight
+  <Sprite>k__BackingField: {fileID: 21300000, guid: bb123d7268fc70940ab42c5473341495, type: 3}
   <MaxHealth>k__BackingField: 10
   <Armor>k__BackingField: 0
   <BaseAttackPower>k__BackingField: 2
