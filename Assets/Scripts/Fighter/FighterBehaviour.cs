@@ -9,7 +9,6 @@ public class FighterBehaviour : MonoBehaviour
     private Coroutine _attackCoroutine;
 
     private Fight _fight;
-
     private Fighter _target;
 
     private bool _fightIsActive = false;

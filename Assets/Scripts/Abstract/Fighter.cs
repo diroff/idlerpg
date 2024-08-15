@@ -6,6 +6,7 @@ public abstract class Fighter : MonoBehaviour, IDamageable
     [SerializeField] protected CharacterStats Stats;
     [SerializeField] protected SpriteRenderer SpriteRenderer;
 
+    [Header("Weapon")]
     [SerializeField] protected Weapon StartWeapon;
 
     protected int CurrentHealth;
