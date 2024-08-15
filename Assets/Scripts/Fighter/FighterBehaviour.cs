@@ -20,6 +20,10 @@ public class FighterBehaviour : MonoBehaviour
     public UnityAction<float, float> AttackTimeChanged;
     public UnityAction<float, float> WeaponSwitchTimeChanged;
 
+    public UnityAction PrepareStateStarted;
+    public UnityAction AttackStateStarted;
+    public UnityAction SwitchWeaponStateStarted;
+
     private void OnDisable()
     {
         if (_fight == null)
@@ -78,6 +82,8 @@ public class FighterBehaviour : MonoBehaviour
         if(!_fightIsActive)
             yield break;
 
+        PrepareStateStarted?.Invoke();
+
         Debug.Log($"{Time.time}: {fighter} prepared to fight");
 
         var waitTime = fighter.CalculateTotalPrepareDelay();
@@ -99,29 +105,13 @@ public class FighterBehaviour : MonoBehaviour
         _attackCoroutine = StartCoroutine(AttackCoroutine(fighter, target));
     }
 
-    private IEnumerator SwitchWeaponCoroutine(Fighter fighter, Fighter target)
-    {
-        if (!_fightIsActive) yield break;
-
-        var waitTime = fighter.TryingWeapon.CalculateTotalEquipTime();
-        var maxTime = waitTime;
-
-        while(waitTime > 0)
-        {
-            waitTime -= Time.deltaTime;
-
-            WeaponSwitchTimeChanged?.Invoke(waitTime, maxTime);
-            yield return null;
-        }
-
-        fighter.SetWeapon();
-    }
-
     private IEnumerator AttackCoroutine(Fighter fighter, Fighter target)
     {
         if (!_fightIsActive) yield break;
 
         Debug.Log($"{Time.time}: {fighter} prepared to attack");
+
+        AttackStateStarted?.Invoke();
 
         var waitTime = fighter.CalculateAttackDelay();
         var maxTime = waitTime;
@@ -143,5 +133,25 @@ public class FighterBehaviour : MonoBehaviour
         if (!_fightIsActive) yield break;
 
         _prepareCoroutine = StartCoroutine(PrepareCoroutine(fighter, target));
+    }
+
+    private IEnumerator SwitchWeaponCoroutine(Fighter fighter, Fighter target)
+    {
+        if (!_fightIsActive) yield break;
+
+        SwitchWeaponStateStarted?.Invoke();
+
+        var waitTime = fighter.TryingWeapon.CalculateTotalEquipTime();
+        var maxTime = waitTime;
+
+        while(waitTime > 0)
+        {
+            waitTime -= Time.deltaTime;
+
+            WeaponSwitchTimeChanged?.Invoke(waitTime, maxTime);
+            yield return null;
+        }
+
+        fighter.SetWeapon();
     }
 }
