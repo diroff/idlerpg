@@ -87,20 +87,15 @@ public abstract class Fighter : MonoBehaviour, IDamageable
         StartWeapon = TryingWeapon;
         WeaponWasChanged?.Invoke(StartWeapon);
         IsWeaponChanging = false;
-        Debug.Log($"{Time.time}: weapon started changed");
+        Debug.Log($"{Time.time}: weapon complitly changed");
     }
 
     public void TryToSetWeapon(Weapon weapon)
     {
+        Debug.Log($"{Time.time}: weapon started changed");
         WeaponTryingToChanged?.Invoke();
         IsWeaponChanging = true;
         TryingWeapon = weapon;
-    }
-
-    public void ResetWeaponSetting()
-    {
-        IsWeaponChanging = false;
-        Debug.Log($"{Time.time}: weapon complitly changed");
     }
 
     public virtual int CalculateTotalDamage()

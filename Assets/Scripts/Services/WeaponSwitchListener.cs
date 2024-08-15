@@ -4,7 +4,7 @@ public class WeaponSwitchListener : FightListener
 {
     [SerializeField] private Fighter _fighter;
 
-    private bool _isFightActive;
+    private bool _isFightActive = false;
 
     protected override void OnEnable()
     {
@@ -24,6 +24,7 @@ public class WeaponSwitchListener : FightListener
             return;
 
         _fighter.SetWeapon();
+        Debug.Log("Weapon is setted! Weapon changing status = " + _fighter.IsWeaponChanging);
     }
 
     protected override void OnFightStateChangedAction(bool isFightActive)

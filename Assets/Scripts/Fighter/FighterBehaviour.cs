@@ -18,6 +18,7 @@ public class FighterBehaviour : MonoBehaviour
 
     public UnityAction<float, float> PrepareTimeChanged;
     public UnityAction<float, float> AttackTimeChanged;
+    public UnityAction<float, float> WeaponSwitchTimeChanged;
 
     private void OnDisable()
     {
@@ -86,8 +87,8 @@ public class FighterBehaviour : MonoBehaviour
         {
             if (fighter.IsWeaponChanging)
             {
-                yield return new WaitForSeconds(fighter.TryingWeapon.CalculateTotalEquipTime());
-                fighter.SetWeapon();
+                Debug.Log("Weapon is changing:" + fighter.IsWeaponChanging);
+                yield return StartCoroutine(SwitchWeaponCoroutine(fighter, target));
             }
 
             waitTime -= Time.deltaTime;
@@ -96,6 +97,24 @@ public class FighterBehaviour : MonoBehaviour
         }
 
         _attackCoroutine = StartCoroutine(AttackCoroutine(fighter, target));
+    }
+
+    private IEnumerator SwitchWeaponCoroutine(Fighter fighter, Fighter target)
+    {
+        if (!_fightIsActive) yield break;
+
+        var waitTime = fighter.TryingWeapon.CalculateTotalEquipTime();
+        var maxTime = waitTime;
+
+        while(waitTime > 0)
+        {
+            waitTime -= Time.deltaTime;
+
+            WeaponSwitchTimeChanged?.Invoke(waitTime, maxTime);
+            yield return null;
+        }
+
+        fighter.SetWeapon();
     }
 
     private IEnumerator AttackCoroutine(Fighter fighter, Fighter target)
@@ -119,10 +138,7 @@ public class FighterBehaviour : MonoBehaviour
         target.ApplyDamage(fighter.CalculateTotalDamage());
 
         if (fighter.IsWeaponChanging)
-        {
-            yield return new WaitForSeconds(fighter.TryingWeapon.CalculateTotalEquipTime());
-            fighter.SetWeapon();
-        }
+            yield return StartCoroutine(SwitchWeaponCoroutine(fighter, target));
 
         if (!_fightIsActive) yield break;
 
