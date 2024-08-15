@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class UIFighterHealth : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _healthText;
-
-    private Fighter _fighter;
+    [SerializeField] private Fighter _fighter;
 
     private void OnEnable()
     {
