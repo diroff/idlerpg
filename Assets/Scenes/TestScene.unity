@@ -2194,7 +2194,7 @@ MonoBehaviour:
   _fighter: {fileID: 649618037}
   _prepareTimeText: {fileID: 1829782291}
   _attackTimeText: {fileID: 1914173326}
-  _weaponSwtichTimeText: {fileID: 0}
+  _weaponSwtichTimeText: {fileID: 471710381}
 --- !u!1 &2073295407
 GameObject:
   m_ObjectHideFlags: 0
