@@ -5,6 +5,8 @@ public class FighterBehaviour : MonoBehaviour
 {
     [SerializeField] private Fighter _fighter;
 
+    [SerializeField] private bool _isDisableOnEnd;
+
     private Coroutine _prepareCoroutine;
     private Coroutine _attackCoroutine;
 
@@ -53,6 +55,9 @@ public class FighterBehaviour : MonoBehaviour
 
         _fight.FightStarted -= OnFightStarted;
         _fight.FightEnded -= OnFightEnded;
+
+        if (_isDisableOnEnd)
+            _fighter.gameObject.SetActive(false);
     }
 
     private IEnumerator PrepareCoroutine(Fighter fighter, Fighter target)
@@ -81,8 +86,7 @@ public class FighterBehaviour : MonoBehaviour
 
     private IEnumerator AttackCoroutine(Fighter fighter, Fighter target)
     {
-        if (!_fightIsActive)
-            yield break;
+        if (!_fightIsActive) yield break;
 
         Debug.Log($"{Time.time}: {fighter} prepared to attack");
 
@@ -94,8 +98,7 @@ public class FighterBehaviour : MonoBehaviour
             yield return null;
         }
 
-        if (!_fightIsActive)
-            yield break;
+        if (!_fightIsActive) yield break;
 
         target.ApplyDamage(fighter.CalculateTotalDamage());
 
@@ -104,6 +107,8 @@ public class FighterBehaviour : MonoBehaviour
             yield return new WaitForSeconds(fighter.TryingWeapon.CalculateTotalEquipTime());
             fighter.SetWeapon();
         }
+
+        if (!_fightIsActive) yield break;
 
         _prepareCoroutine = StartCoroutine(PrepareCoroutine(fighter, target));
     }

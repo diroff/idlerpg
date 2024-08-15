@@ -9,6 +9,8 @@ public class Fight : MonoBehaviour
     public UnityAction FightStarted;
     public UnityAction FightEnded;
 
+    public bool FightEnabled {get; private set;}
+
     public void Initialize(EnemyStats enemyStats)
     {
         _player.Died += OnFighterDied;
@@ -18,8 +20,10 @@ public class Fight : MonoBehaviour
         _enemyPlug.Died += OnFighterDied;
     }
 
-    private void StopFight()
+    public void StopFight()
     {
+        FightEnabled = false;
+
         _player.Died -= OnFighterDied;
         _enemyPlug.Died -= OnFighterDied;
 
@@ -30,6 +34,8 @@ public class Fight : MonoBehaviour
     public void StartFight()
     {
         FightStarted?.Invoke();
+
+        FightEnabled = true;
     }
 
     public Fighter GetTarget(Fighter fighter)

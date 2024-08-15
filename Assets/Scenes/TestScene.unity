@@ -208,7 +208,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 221861539}
         m_TargetAssemblyTypeName: FightCreator, Assembly-CSharp
-        m_MethodName: CreateFight
+        m_MethodName: ChangeFightState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -305,6 +305,7 @@ GameObject:
   - component: {fileID: 221861536}
   - component: {fileID: 221861538}
   - component: {fileID: 221861539}
+  - component: {fileID: 221861540}
   m_Layer: 0
   m_Name: Fight
   m_TagString: Untagged
@@ -370,10 +371,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemySelector: {fileID: 221861538}
-  _tester: {fileID: 221861536}
+  _fight: {fileID: 221861536}
   _fighterBehaviours:
   - {fileID: 649618037}
   - {fileID: 1069352835}
+--- !u!114 &221861540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221861535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5df78cdd1806cbb49bff8aad43305206, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fightCreator: {fileID: 221861539}
+  _button: {fileID: 142423742}
 --- !u!1 &425008204
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,6 +819,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fighter: {fileID: 649618033}
+  _isDisableOnEnd: 0
 --- !u!212 &649618038
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1000,6 +1016,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fighter: {fileID: 1069352832}
+  _isDisableOnEnd: 1
 --- !u!212 &1069352836
 SpriteRenderer:
   m_ObjectHideFlags: 0
