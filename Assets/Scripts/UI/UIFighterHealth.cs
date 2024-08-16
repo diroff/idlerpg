@@ -1,9 +1,12 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIFighterHealth : MonoBehaviour
 {
+    [SerializeField] private Image _healthSpirte;
     [SerializeField] private TextMeshProUGUI _healthText;
+
     [SerializeField] private Fighter _fighter;
 
     private void OnEnable()
@@ -31,5 +34,6 @@ public class UIFighterHealth : MonoBehaviour
     private void OnHealthChanged(int currentValue, int maxValue)
     {
         _healthText.text = $"{currentValue}/{maxValue}";
+        _healthSpirte.fillAmount = (float)currentValue / maxValue;
     }
 }
