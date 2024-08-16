@@ -1866,10 +1866,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87872a91c0a1a4b4fbe5ac5dd2ad0fa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Stats: {fileID: 11400000, guid: c5f1083cad18dbf449d8e89e4374c62d, type: 2}
+  Stats: {fileID: 11400000, guid: 519cd98468a709b4e8a1b6abc5c1f30b, type: 2}
   SpriteRenderer: {fileID: 649618038}
   WeaponPlug: {fileID: 649618035}
-  StartRangedWeapon: {fileID: 11400000, guid: b6f3501af30472241bb5b0b06229f66f, type: 2}
 --- !u!4 &649618034
 Transform:
   m_ObjectHideFlags: 0
@@ -1897,7 +1896,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e93ddb483faf7e14681bfdbf4f3f86b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Stats: {fileID: 11400000, guid: 50d5272078ee5fa4b8b46ede10169886, type: 2}
 --- !u!114 &649618036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1910,7 +1908,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c22631fa397ce694892f3c0cb8d3dc02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Stats: {fileID: 11400000, guid: b6f3501af30472241bb5b0b06229f66f, type: 2}
 --- !u!114 &649618037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2909,7 +2906,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e93ddb483faf7e14681bfdbf4f3f86b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Stats: {fileID: 11400000, guid: c8124edf28432784783ba1e3ff92c099, type: 2}
 --- !u!114 &1069352835
 MonoBehaviour:
   m_ObjectHideFlags: 0

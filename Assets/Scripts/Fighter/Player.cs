@@ -2,8 +2,16 @@ using UnityEngine;
 
 public class Player : Fighter
 {
-    [Header("Player parameters")]
-    [SerializeField] protected RangedWeaponStats StartRangedWeapon;
+    private PlayerStats PlayerStats => (PlayerStats)Stats;
+
+    private RangedWeaponStats _currentRangedWeapon;
+
+    public override void Initialize(CharacterStats stats)
+    {
+        base.Initialize(stats);
+
+        _currentRangedWeapon = PlayerStats.StartRangedWeapon;
+    }
 
     [ContextMenu("Take melee weapon")]
     public void TakeMeleeWeapon()
@@ -14,6 +22,6 @@ public class Player : Fighter
     [ContextMenu("Take ranged weapon")]
     public void TakeRangedWeapon()
     {
-        TryToSetWeapon(StartRangedWeapon);
+        TryToSetWeapon(_currentRangedWeapon);
     }
 }
