@@ -9,23 +9,25 @@ public class Fight : MonoBehaviour
     public UnityAction FightStarted;
     public UnityAction FightEnded;
 
+    public UnityAction FightEndedWithEnemyLoose;
+
     public bool FightEnabled {get; private set;}
 
     public void Initialize(EnemyStats enemyStats)
     {
-        _player.Died += OnFighterDied;
+        _player.Died += OnPlayerDied;
 
         _enemyPlug.gameObject.SetActive(true);
         _enemyPlug.Initialize(enemyStats);
-        _enemyPlug.Died += OnFighterDied;
+        _enemyPlug.Died += OnEnemyDied;
     }
 
     public void StopFight()
     {
         FightEnabled = false;
 
-        _player.Died -= OnFighterDied;
-        _enemyPlug.Died -= OnFighterDied;
+        _player.Died -= OnPlayerDied;
+        _enemyPlug.Died -= OnEnemyDied;
 
         Debug.Log("Fight has ended.");
         FightEnded?.Invoke();
@@ -43,8 +45,14 @@ public class Fight : MonoBehaviour
         return fighter == _player ? _enemyPlug : _player;
     }
 
-    private void OnFighterDied()
+    private void OnPlayerDied()
     {
         StopFight();
+    }
+
+    private void OnEnemyDied()
+    {
+        StopFight();
+        FightEndedWithEnemyLoose?.Invoke();
     }
 }

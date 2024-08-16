@@ -172,7 +172,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bab5888385215642aacbef19313efa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fighterBehaviour: {fileID: 649618037}
   _fighter: {fileID: 649618033}
   _switchWeaponButton: {fileID: 1940623851}
 --- !u!1 &48288670
@@ -947,6 +946,7 @@ MonoBehaviour:
   _fighterBehaviours:
   - {fileID: 649618037}
   - {fileID: 1069352835}
+  _delayBetweenFights: 0.5
 --- !u!114 &221861540
 MonoBehaviour:
   m_ObjectHideFlags: 0
