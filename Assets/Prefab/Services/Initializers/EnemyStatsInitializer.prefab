@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9192860490607275616}
   - component: {fileID: 9192860490607275646}
   - component: {fileID: 9192860490607275647}
+  - component: {fileID: 9192860491603691536}
   m_Layer: 0
   m_Name: EnemyStatsInitializer
   m_TagString: Untagged
@@ -77,3 +78,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiCurrentWeapon: {fileID: 0}
+--- !u!114 &9192860491603691536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9192860490607275619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a80402e7c10abdf40b6ae86370cd23d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fight: {fileID: 0}
+  _uiIndicatorsPanel: {fileID: 0}
+  _fighter: {fileID: 0}
+  _uiPrepareState: {fileID: 0}
+  _uiAttackState: {fileID: 0}
+  _uiSwitchWeaponState: {fileID: 0}
