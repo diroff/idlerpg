@@ -62,8 +62,6 @@ public abstract class Fighter : MonoBehaviour, IDamageable
 
         if (IsDead())
             Die();
-
-        Debug.Log($"{Time.time}: {Stats.Name} take {damage} damage, current health: {CurrentHealth}");
     }
 
     public void ApplyHeal(int value)
@@ -138,7 +136,6 @@ public abstract class Fighter : MonoBehaviour, IDamageable
 
     protected virtual void Die()
     {
-        Debug.Log($"{Stats.Name} is die");
         Died?.Invoke();
     }
 }

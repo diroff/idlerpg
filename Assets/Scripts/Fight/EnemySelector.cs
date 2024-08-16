@@ -67,12 +67,4 @@ public class EnemySelector : MonoBehaviour
 
         return null;
     }
-
-    [ContextMenu("Pick random enemy")]
-    public void ShowRandomEnemyWithChance()
-    {
-        var enemy = GetRandomEnemy();
-
-        Debug.Log($"{enemy.Name} : chance - {enemy.SpawnChance * 100} %");
-    }
 }

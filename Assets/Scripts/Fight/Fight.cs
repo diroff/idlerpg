@@ -29,7 +29,6 @@ public class Fight : MonoBehaviour
         _player.Died -= OnPlayerDied;
         _enemyPlug.Died -= OnEnemyDied;
 
-        Debug.Log("Fight has ended.");
         FightEnded?.Invoke();
     }
 

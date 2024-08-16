@@ -17,9 +17,8 @@ public class FightPanelUIInstaller : MonoBehaviour
 
     private void OnPlayerHealthChange(int health, int maxHealth)
     {
-        if (health <= 0)
-            _fightButtonsPanel.SetActive(false);
-        else
-            _fightButtonsPanel.SetActive(true);
+        bool active = health > 0;
+
+        _fightButtonsPanel.SetActive(active);
     }
 }

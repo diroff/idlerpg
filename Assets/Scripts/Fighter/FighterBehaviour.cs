@@ -84,18 +84,13 @@ public class FighterBehaviour : MonoBehaviour
 
         PrepareStateStarted?.Invoke();
 
-        Debug.Log($"{Time.time}: {fighter} prepared to fight");
-
         var waitTime = fighter.CalculateTotalPrepareDelay();
         var maxTime = waitTime;
 
         while (waitTime > 0)
         {
             if (fighter.IsWeaponChanging)
-            {
-                Debug.Log("Weapon is changing:" + fighter.IsWeaponChanging);
                 yield return StartCoroutine(SwitchWeaponCoroutine(fighter, target));
-            }
 
             waitTime -= Time.deltaTime;
             PrepareTimeChanged?.Invoke(waitTime, maxTime);
@@ -108,8 +103,6 @@ public class FighterBehaviour : MonoBehaviour
     private IEnumerator AttackCoroutine(Fighter fighter, Fighter target)
     {
         if (!_fightIsActive) yield break;
-
-        Debug.Log($"{Time.time}: {fighter} prepared to attack");
 
         AttackStateStarted?.Invoke();
 
