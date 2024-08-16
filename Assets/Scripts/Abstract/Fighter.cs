@@ -10,8 +10,7 @@ public abstract class Fighter : MonoBehaviour, IDamageable
     [SerializeField] protected Weapon WeaponPlug;
 
     protected int CurrentHealth;
-
-    private WeaponStats _currentWeapon;
+    protected WeaponStats CurrentWeapon;
 
     public UnityAction<int, int> HealthChanged;
     public UnityAction<Weapon> WeaponWasChanged;
@@ -90,8 +89,11 @@ public abstract class Fighter : MonoBehaviour, IDamageable
 
     public void SetWeapon()
     {
-        _currentWeapon = TryingWeapon;
-        WeaponPlug.Initialize(_currentWeapon);
+        if (TryingWeapon == null)
+            return;
+
+        CurrentWeapon = TryingWeapon;
+        WeaponPlug.Initialize(CurrentWeapon);
         IsWeaponChanging = false;
         WeaponWasChanged?.Invoke(WeaponPlug);
     }
@@ -105,7 +107,7 @@ public abstract class Fighter : MonoBehaviour, IDamageable
 
     public virtual int CalculateTotalDamage()
     {
-        int weaponDamage = _currentWeapon != null ? WeaponPlug.CalculateTotalDamage() : 0;
+        int weaponDamage = CurrentWeapon != null ? WeaponPlug.CalculateTotalDamage() : 0;
         return Stats.BaseAttackPower + weaponDamage;
     }
 
@@ -116,7 +118,7 @@ public abstract class Fighter : MonoBehaviour, IDamageable
 
     public virtual float CalculateAttackDelay()
     {
-        return _currentWeapon != null ? WeaponPlug.CalculateTotalAttackDelay() : 0;
+        return CurrentWeapon != null ? WeaponPlug.CalculateTotalAttackDelay() : 0;
     }
 
     protected virtual int ReduceDamageByArmor(int damage)

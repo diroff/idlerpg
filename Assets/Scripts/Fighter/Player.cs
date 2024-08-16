@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class Player : Fighter
 {
     private PlayerStats PlayerStats => (PlayerStats)Stats;
@@ -13,15 +11,21 @@ public class Player : Fighter
         _currentRangedWeapon = PlayerStats.StartRangedWeapon;
     }
 
-    [ContextMenu("Take melee weapon")]
-    public void TakeMeleeWeapon()
+    private void TakeMeleeWeapon()
     {
         TryToSetWeapon(Stats.StartWeapon);
     }
 
-    [ContextMenu("Take ranged weapon")]
-    public void TakeRangedWeapon()
+    private void TakeRangedWeapon()
     {
         TryToSetWeapon(_currentRangedWeapon);
+    }
+
+    public void SwitchWeapon()
+    {
+        if (CurrentWeapon == _currentRangedWeapon)
+            TakeMeleeWeapon();
+        else
+            TakeRangedWeapon();
     }
 }
